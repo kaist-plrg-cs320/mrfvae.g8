@@ -35,7 +35,10 @@ class Spec extends SpecBase {
   test(run("{ a = (2 - 1) }.a"), "1")
   test(run("{ val y = { x = 1, y = 2, z = 3 }; y.y }"), "2")
   test(run("{ val y = { x = 1, y = 2, z = 3 }; y.z }"), "3")
-  testExc(run("{ a = 10 }.b"), "no such field")
+
+  testExc(run("2((3 + 4))"), "not a closure")
+  testExc(run("{ (x, y) => (x + y) }(1)"), "wrong arity")
+  testExc(run("(1 + 2).a"), "not a record")
   testExc(run("{ z = { z = 0 }.y }"), "no such field")
 
   /* Write your own tests */
